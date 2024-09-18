@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+        stack <int> s;
+        int sum=0;
+        int total=0;
+        for(int i=0;i<operations.size();i++){
+          if(operations[i]=="C"){
+              if(!s.empty()){
+                  sum -= s.top();
+                  s.pop();
+              }
+          }
+          else if(operations[i]=="D"){
+            if(!s.empty()){
+                int topElement = s.top();
+                s.push(topElement * 2);
+                sum += topElement * 2;
+            }
+          }
+          else if(operations[i]=="+"){  
+            if(s.size() >= 2){
+                int topElement1 = s.top();
+                s.pop();
+                int topElement2 = s.top();
+                int newScore = topElement1 + topElement2;
+                s.push(topElement1);
+                s.push(newScore);
+                sum += newScore;
+            }
+          }
+          else {
+              int score = stoi(operations[i]);
+              s.push(score);
+              sum += score;
+          }
+        }
+        return sum;
+    }
+};
