@@ -1,0 +1,50 @@
+class Solution {
+public:
+    double average(vector<int>& salary) {
+        double max,min;
+        max=min=salary[0];
+        double a=0,b=0;
+        for(int i=1;i<salary.size();i++){
+            if(max<salary[i]){
+                max=salary[i];
+                a=i;
+
+            } 
+             if(min>salary[i]){
+                min=salary[i];
+                b=i;
+            } 
+        }
+        double sum=0;
+        for(int i=0;i<salary.size();i++){
+           if(i!=a && i!=b){
+              sum +=salary[i];
+              
+           }
+        }
+        return sum/(salary.size()-2);
+        
+    }
+};
+//optimum solution
+/*class Solution {
+public:
+    double average(vector<int>& salary) {
+        double sum = 0;
+        double maxSalary = salary[0];
+        double minSalary = salary[0];
+        
+        for (int s : salary) {
+            sum += s;
+            if (s > maxSalary) {
+                maxSalary = s;
+            }
+            if (s < minSalary) {
+                minSalary = s;
+            }
+        }
+        
+        // Exclude max and min from the sum
+        return (sum - maxSalary - minSalary) / (salary.size() - 2);
+    }
+};*/
