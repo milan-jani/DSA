@@ -1,0 +1,18 @@
+int hurdleRace(int k, vector<int> height) {
+    //1st method
+//    int c=k;
+//    for(int x:height){
+//     int diff=(k<x)? abs(k-x) : 0;
+//       k += diff;
+     
+    
+//    }
+//    return k-c;
+//2nd method ->easy
+   int max=height[0];
+   for(int x:height){
+    max=(max<x)? x:max;
+   }
+   return (k<max)? (max-k) : 0;
+}
+   
