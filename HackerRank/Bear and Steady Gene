@@ -1,0 +1,34 @@
+int steadyGene(string gene) {
+    int n = gene.length();
+    int count[26] = {0};
+
+    // Step 1: Count characters
+    for (char ch : gene) {
+        count[ch - 'A']++;
+    }
+
+    int limit = n / 4;
+    if (count['A' - 'A'] == limit && count['C' - 'A'] == limit &&
+        count['G' - 'A'] == limit && count['T' - 'A'] == limit) {
+        return 0;
+    }
+
+    // Step 2: Sliding window
+    int minLen = n;
+    int left = 0;
+    for (int right = 0; right < n; ++right) {
+        count[gene[right] - 'A']--;
+
+        // Try shrinking window from the left
+        while (count['A' - 'A'] <= limit &&
+               count['C' - 'A'] <= limit &&
+               count['G' - 'A'] <= limit &&
+               count['T' - 'A'] <= limit) {
+            minLen = min(minLen, right - left + 1);
+            count[gene[left] - 'A']++;
+            left++;
+        }
+    }
+
+    return minLen;
+}
