@@ -1,0 +1,12 @@
+int birthdayCakeCandles(vector<int> candles) {
+    int high=0,rep=0;
+    for(int i=0;i<candles.size();i++){
+        if(candles[i]>high) high=candles[i];
+        
+    }
+      for(int i=0;i<candles.size();i++){
+        if(candles[i]==high) rep++;
+        
+    }
+    return rep;
+}
