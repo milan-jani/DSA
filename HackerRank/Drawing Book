@@ -1,0 +1,5 @@
+int pageCount(int n, int p) {
+    int m1 = p / 2;
+    int m2 = (n - p + (n % 2 == 0 ? 1 : 0)) / 2;
+    return min(m1, m2);
+}
