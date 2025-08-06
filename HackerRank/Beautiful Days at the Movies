@@ -1,0 +1,9 @@
+int beautifulDays(int i, int j, int k) {
+  int c=0;
+  for (int a=i;a<=j; a++) {
+    int temp=a; int rev=0;
+    while(temp>0) rev=rev*10+temp%10,temp/=10;
+     if(abs(a-rev)%k==0) c++ ;
+  }
+  return  c;
+}
