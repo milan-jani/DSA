@@ -1,0 +1,15 @@
+int findIndex(const vector<int>& p, int val) {
+    for (int i = 0; i < p.size(); i++) {
+        if (p[i] == val) return i + 1; // +1 because 1-based index
+    }
+    return -1; // not found
+}
+
+vector<int> permutationEquation(vector<int> p) {
+    vector<int> res;
+    for (int x = 1; x <= p.size(); x++) {
+        int y = findIndex(p, findIndex(p, x));
+        res.push_back(y);
+    }
+    return res;
+}
