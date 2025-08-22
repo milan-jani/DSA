@@ -1,0 +1,17 @@
+long repeatedString(string s, long n) {
+    long long size=s.length();
+    if(size==1){
+       if( s[0]=='a') return n;
+       else return 0;
+    } 
+    
+    long long a=0;
+   for(char c:s) if(c=='a') a++; 
+   long long mod=n/size;
+   a*=mod;
+    mod=n%size;
+   for(long long i=0;i<mod;i++){
+    if(s[i]=='a') a++;
+   }
+   return a;
+}
