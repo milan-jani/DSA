@@ -1,0 +1,20 @@
+
+vector<int> acmTeam(vector<string> topic) {
+    int n=topic.size();
+    vector<bitset<500>> bits(n);
+    for(int i=0;i<n;i++){
+        bits[i]=bitset<500>(topic[i]);
+    }
+    int c=0,team=0;
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            int k=(bits[i] | bits[j]).count();
+            if(k>c){
+                c=k;
+                team=1;
+            }
+            else if(k==c) team++;
+        }
+    }
+    return {c,team};
+}
