@@ -1,0 +1,15 @@
+long taumBday(int b, int w, int bc, int wc, int z) {
+        // if(bc==wc || (z>bc && z > wc)) return (b*bc + w*wc);
+        // else if(bc>wc){
+        //     return (w*wc)+(b*(wc+z));
+        // }
+        // else {
+        //     return (b*bc)+(w*(bc+z));
+        // }
+        long blackCost = min(bc, wc + z);
+long whiteCost = min(wc, bc + z);
+return b * blackCost + w * whiteCost;
+
+        
+        
+}
