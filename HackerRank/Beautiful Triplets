@@ -1,0 +1,10 @@
+int beautifulTriplets(int d, vector<int> arr) {
+    int n=arr.size();
+     unordered_set<int> s(arr.begin(),arr.end()); 
+    int c=0;
+    for(int i=0;i<n;i++){
+         if(s.find(d+ arr[i]) !=s.end() && s.find(2*d+ arr[i]) !=s.end()) c++;
+    }
+    return c;
+   
+}
