@@ -1,0 +1,36 @@
+bool calc(int i){
+    if(i==1) return true;
+    if(i==2 or i==3) return false;
+    string sq = to_string(1LL * i * i);
+
+    
+     string s=to_string(i);
+   
+    int n=s.length();
+    
+    int sum=0;
+   
+    if(n<sq.length()){
+        sum=stoi(sq.substr(0,sq.length()-n))+stoi(sq.substr(sq.length()-n));
+    }
+   
+    return sum==i;
+    
+}
+void kaprekarNumbers(int p, int q) {
+    
+    vector<int> ans;
+for(int i=p;i<=q;i++){
+    if(calc(i)){
+     
+        ans.push_back(i);
+    }
+}
+    if(ans.size()==0) cout<<"INVALID RANGE";
+    else{
+        for(int x:ans) cout<<x<<" ";
+    }
+    
+   
+   
+}
