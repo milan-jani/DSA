@@ -1,0 +1,18 @@
+// User function Template for C++
+
+class Solution {
+  public:
+    vector<int> removeDuplicate(vector<int>& arr) {
+        // code here
+    unordered_set<int> ans;
+    vector<int> v;
+    for(int x:arr){
+        if(!ans.count(x)){
+            ans.insert(x);
+            v.push_back(x);
+        } 
+        
+    }
+    return v;
+    }
+};
