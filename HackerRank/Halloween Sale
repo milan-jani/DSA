@@ -1,0 +1,23 @@
+int howManyGames(int p, int d, int m, int s) {
+    int c=0;
+    while(true){
+        
+       if(s>=p){
+         if(p>=m){
+        c++;                    
+        s-=p;
+         p-=d;
+       }
+         else if(s>=m) {
+        s-=m;
+        c++;
+       }
+         else break;
+       }
+       else break;
+       
+       
+    }
+    return c;
+
+}
