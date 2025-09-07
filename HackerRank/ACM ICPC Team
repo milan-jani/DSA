@@ -5,6 +5,7 @@ vector<int> acmTeam(vector<string> topic) {
     for(int i=0;i<n;i++){
         bits[i]=bitset<500>(topic[i]);
     }
+//cpp
     int c=0,team=0;
     for(int i=0;i<n;i++){
         for(int j=i+1;j<n;j++){
