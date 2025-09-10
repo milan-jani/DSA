@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+        int sum=0;
+   vector<int> ans(101,0);
+    for(int c:nums) {
+        if(ans[c]!=INT_MIN) ans[c]++;
+         if(ans[c]==1) sum+=c;
+         else if(ans[c]>1){
+            sum-=c;
+            ans[c]=INT_MIN;
+         } 
+    }
+
+    //  int sum=0;
+    // for(int i=1;i<ans.size();i++){
+    //     if(ans[i]==1) sum+=i;;
+    // }
+    return (sum>0)? sum:0; ;
+    }
+   
+};
