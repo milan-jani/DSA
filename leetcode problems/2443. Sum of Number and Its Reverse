@@ -1,0 +1,22 @@
+class Solution {
+public:
+    
+  int rev(int x) {
+    string s = to_string(x);        
+    reverse(s.begin(), s.end());    
+    return stoi(s);                 
+}
+
+    bool sumOfNumberAndReverse(int num) {
+       int i=0;
+        while(i<=num){
+            int temp=rev(i);
+            if(i+temp==num){
+            return true;
+            } 
+            i++;
+        }
+        return false;
+    }
+    
+};
