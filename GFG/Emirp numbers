@@ -1,0 +1,54 @@
+
+class Solution {
+  public:
+  void sieve(vector<bool> &p){ //o(log log n)
+      p[0]=p[1]=false;
+      int n=p.size();
+      for(int i=2;i*i<n;i++){
+          if(p[i]){
+              for(int j=i*i;j<n;j+=i){
+                  p[j]=false;
+              }
+          }
+      }
+      
+  }
+
+  
+  int rev(int n){ //  O(logn)
+      int r=0;
+      while(n>0){
+          r=r*10 + (n%10);
+          n/=10;
+          
+      }
+      return r;
+      
+  }
+  
+    vector<int> EmirpNumbers(int n) { //TC O(n log logn) + 2 * O(nlog n) = O(n log n)
+        vector<bool> p(n+1,true);
+       // set<int> s;
+       vector <int > ans;
+   
+        sieve(p);  //O(log log n)
+        for(int i=13 ; i<n;i++){  //O(n-13) * 2 *O(log n) = O(nlog n)
+            if(p[i]){// O(log n) * 2
+              int  r=rev(i); //O(log)
+                if( i!=r && r<=n && p[r]){
+                    // s.insert(i);
+                    // s.insert(r);
+                    ans.push_back(i);
+                    ans.push_back(r);
+                      p[i]=false;
+                     p[r]= false;
+                }
+            }
+          
+        }
+        
+        // return vector<int>(s.begin(),s.end());
+        sort(ans.begin(),ans.end()); //O(nlog n)
+        return ans;
+    }
+};
