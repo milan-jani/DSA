@@ -1,0 +1,44 @@
+/*
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+};
+*/
+class Solution {
+  public:
+    // Function to return a list of nodes visible from the top view
+    // from left to right in Binary Tree.
+    
+    vector<int> topView(Node *root) {
+        // code here
+        if(!root) return {};
+    queue<pair<Node*,int>> q; //pair of node pointer and its Y-cord(horizontal)
+    vector<int> ans;
+    
+    q.push({root,0});
+    map<int,int> mp;
+    while(!q.empty()){  //untill queue get empty
+        int size=q.size(); 
+       while(size--){ //till the entire level get completes
+        Node *curr=q.front().first;  //pointer for first elemnt in que
+        int cor=q.front().second; // cordinate of that node
+        if(!mp[cor]) mp[cor]=curr->data; // if not present in map insert it
+        q.pop(); // remove the element from que
+       
+        //cout<<curr->data<<" ";
+        if(curr->left!=nullptr) q.push({curr->left,cor-1});
+        if(curr->right!=nullptr) q.push({curr->right,cor+1});  
+       }
+      // cout<<endl;
+        
+
+    }
+    //cout<<"Top elements of tree are: ";
+    for(auto x:mp){
+        ans.push_back(x.second);
+    }
+    return ans;
+    }
+};
