@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void rec(int s,vector<vector<int>>& isConnected,vector<bool> &visit ){
+        visit[s]=true;
+        for(int nbr=0;nbr<isConnected.size();nbr++){
+            if(isConnected[s][nbr] && !visit[nbr]){
+                rec(nbr,isConnected,visit);
+            }
+        }
+    }
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int size=isConnected.size();
+        if(size==1) return 1;
+        vector<bool> visit(size,false);
+        rec(1,isConnected,visit);
+        int c=1;
+        for(int i=0;i<size;i++){
+            if(!visit[i]) {
+                rec(i,isConnected,visit);
+                 c++;
+            }
+        }
+        return c;
+    }
+};
