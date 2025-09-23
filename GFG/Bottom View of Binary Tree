@@ -1,0 +1,33 @@
+/*
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+};
+*/
+
+class Solution {
+  public:
+    vector<int> bottomView(Node *root) {
+        // Your Code Here
+        if(root==nullptr) return {};
+        queue<pair<Node*,int>> q;
+        q.push({root,0});
+        vector<int> ans;
+        map<int,int> mp;
+        while(!q.empty()){
+            Node*curr=q.front().first;
+            int cor=q.front().second;
+            mp[cor]=curr->data;
+            q.pop();
+            if(curr->left) q.push({curr->left,cor-1});
+            if(curr->right) q.push({curr->right,cor+1});
+        }
+        for(pair<const int,int> &row:mp){
+            ans.push_back(row.second);
+        }
+        return ans;
+        
+    }
+};
