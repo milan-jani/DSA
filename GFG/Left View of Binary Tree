@@ -1,0 +1,43 @@
+/*
+
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = nullptr;
+        right = nullptr;
+    }
+};
+ */
+
+class Solution {
+  public:
+    vector<int> leftView(Node *root) {
+        // code here
+        if(root==nullptr) return {};
+        queue<Node*> q;
+        vector<int>ans;
+        q.push(root);
+        while(!q.empty()){
+            
+            vector<int> temp;
+            int size=q.size();
+            while(size--){
+                Node* curr=q.front();
+               temp.push_back(curr->data);
+             
+            q.pop();
+            if(curr->left) q.push(curr->left);
+            if(curr->right) q.push(curr->right);
+             
+            }
+            ans.push_back(temp[0]);
+        }
+        return ans;
+        
+    }
+};
