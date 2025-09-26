@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool rec(unordered_map<int,unordered_set<int>>&mp,int s,int &d,vector<bool> &visit){
+        if(s==d) return true;
+        visit[s]=1;
+        for(int nbr:mp[s]){
+            if(!visit[nbr]) {
+                if( rec(mp,nbr,d,visit)) return true;
+            }
+        }
+        return false;
+    }
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        unordered_map<int ,unordered_set<int>> mp;
+        vector<bool > visit(n,0);
+        for(vector<int> edge:edges){
+        
+            mp[edge[0]].insert(edge[1]);
+            mp[edge[1]].insert(edge[0]);
+            
+
+        }
+       
+        return rec(mp, source, destination,visit);
+    }
+};
