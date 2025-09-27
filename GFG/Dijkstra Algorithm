@@ -1,0 +1,65 @@
+// User Function Template
+class Solution {
+  public:
+  typedef vector<int> vi;
+  typedef vector<bool> vb;
+  typedef pair<int,int> pii;
+  typedef unordered_map<int , unordered_map<int,int>> umiumii;
+    // int find_close(vi &dist,vb &visit){
+    //     int cmin=INT_MAX,key=-1;
+    //     for(int i=0;i<visit.size();i++){
+    //         if(cmin>dist[i]&& !visit[i]){
+    //             cmin=dist[i];
+    //             key=i;
+    //         }
+    //     }
+    //   // cout<<"key"<<key<<endl;
+    //     return key;
+    // }
+    vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
+        // Code here
+        //int n=edges.size();
+        umiumii list;
+        for(vi &edge:edges){
+            list[edge[0]][edge[1]]=edge[2];
+            list[edge[1]][edge[0]]=edge[2];
+            
+        }
+        
+        //make dist vector to store distance from source 
+        
+        vi dist(V,INT_MAX);
+        //make an vector to track visited vertex
+        vb visit(V,0);
+        //visit[src]=1;
+        dist[src]=0;
+       set<pii> st;
+       st.insert({0,src});
+        while(!st.empty()){
+            //cout<<"hello";
+            
+            int choose = st.begin()->second;
+            int d = st.begin()->first;
+            st.erase(st.begin());
+            if(!visit[choose]){
+            visit[choose]=true;
+            for(pair<const int,int> &row:list[choose]){
+             int nbr=row.first;
+            int weig=row.second;
+            
+            if(dist[choose]+weig<dist[nbr]){
+                dist[nbr]=dist[choose]+weig;
+                st.insert({dist[nbr], nbr});
+                
+            } 
+            }
+                
+            }
+            
+           // int key=edges[choose][0];
+            
+            
+        }
+        return dist;
+    }
+};
