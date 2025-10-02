@@ -1,0 +1,33 @@
+// User function Template for C++
+typedef vector<int> vi;
+class Solution {
+  public:
+  const long long mod=1000000007;
+  int rec(int n,vi &memo){
+      if(memo[n]!=-1) return memo[n];
+      int ans=(rec(n-1,memo)+rec(n-2,memo))%mod;
+      return {memo[n]=ans};
+  }
+    long long int topDown(int n) {
+        // code here
+        vi memo(n+1,-1);
+        memo[0]=0;
+        memo[1]=1;
+       return rec(n,memo);
+        
+    }
+
+    long long int bottomUp(int n) {
+        if(n<2) return n;
+        
+        int prev=1,prev2=0;
+        for(int i=2;i<=n;i++){
+            int curr=(prev+prev2)%mod;
+            prev2=prev;
+            prev=curr;
+        }
+        return prev;
+        
+        
+    }
+};
