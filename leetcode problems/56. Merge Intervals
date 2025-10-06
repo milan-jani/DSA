@@ -1,0 +1,22 @@
+class Solution {
+public:
+    typedef vector<vector<int>> vvi;
+    typedef vector<int> vi;
+
+    vvi merge(vvi& intervals) {
+    int n = intervals.size();
+    sort(intervals.begin(), intervals.end());
+    vvi ans;
+    vi prev=intervals[0];
+    for (int i=1;i<n;i++) {
+    vi curr=intervals[i];
+    if(prev[1]<curr[0]) {
+        ans.push_back(prev);
+        prev=curr;
+    }
+    else if(curr[1]>prev[1]) prev[1]=curr[1];
+    }
+    ans.push_back(prev);
+    return ans; 
+    }
+}; 
