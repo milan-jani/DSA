@@ -1,0 +1,36 @@
+
+string encryption(string s) {
+    int n=s.length(); 
+    int  l=floor(sqrt(n));
+    int e=ceil(sqrt(n));
+    cout<<l<<" "<<e<<endl;
+ if((l*e)<n) l++;
+    
+      vector<vector<char>> matrix(l, vector<char>(e, '0'));
+  string ans="";
+    
+ cout<<l<<" "<<e<<endl;
+int k=0;
+for(int i=0;i<l and k<n;i++){
+    for(int j=0;j<e&& k<n;j++){
+       matrix[i][j]=s[k++]; 
+    }
+}
+for(int i=0;i<l;i++){
+    for(int j=0;j<e;j++){
+        if(matrix[i][j]!='0')
+            cout<< matrix[i][j]<<" "; 
+    }
+    cout<<endl;
+}
+
+    for(int i=0;i<e;i++){
+    for(int j=0;j<l;j++){
+    if(matrix[j][i]!='0')
+         ans+=matrix[j][i]; 
+    }
+    ans+=" ";
+}
+
+return ans;
+}
