@@ -1,0 +1,53 @@
+typedef vector<int> vi;
+class Solution {
+public:
+    int rec(vi & nums,int st,int en){
+        if(en==st) return nums[en];
+        if(en==st+1) return max(nums[en],nums[st]);
+        int take=nums[en]+rec(nums,st,en-2);
+        int nottake=rec(nums,st,en-1);
+        return max(take,nottake);
+    }
+    int memo_fn(vi& nums,int st,int en,vi&memo){
+        if(en < st) return 0;
+        if(en == st) return nums[en];
+
+        if(memo[en]!=-1) return memo[en];
+        int take=nums[en]+memo_fn(nums,st,en-2,memo);
+        int nottake=memo_fn(nums,st,en-1,memo);
+        return {memo[en]=max(take,nottake)};
+    }
+    int tabulation(vi &nums,int l,int r){
+         int prev1 = 0, prev2 = 0;
+    for (int i = l; i <= r; i++) {
+        int pick = prev2 + nums[i];
+        int notPick = prev1;
+        int curr = max(pick, notPick);
+        prev2 = prev1;
+        prev1 = curr;
+    }
+    return prev1;
+
+
+
+    }
+    int rob(vector<int>& nums) {
+        if(nums.size()<2)return nums[0];
+        // int first=rec(nums,0,nums.size()-2);
+        // int last=rec(nums,1,nums.size()-1);
+        //  return max(first,last);
+
+        int n=nums.size();
+
+        vi memo(n,-1);
+        // memo[0]=nums[0];
+        // memo[1]=max(nums[0],nums[1]);
+        // int first=memo_fn(nums,0,nums.size()-2,memo);
+        //  fill(memo.begin(), memo.end(), -1);
+        // int last=memo_fn(nums,1,nums.size()-1,memo);
+        //  return max(first,last);
+
+        return max(tabulation(nums,0,n-2),tabulation(nums,1,n-1));
+    }
+
+};
