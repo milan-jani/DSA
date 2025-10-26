@@ -2,7 +2,7 @@ int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
     cout<<"Hello, World."<<endl;
     string s;
-    
+    //
      getline(cin,s);
     cout<<s<<" ";   
     
