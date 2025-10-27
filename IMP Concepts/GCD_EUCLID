@@ -1,0 +1,12 @@
+#include<iostream>
+using namespace std;
+
+int rec(int a,int b){
+    if(b==0) return a;
+    return rec(b,a%b);
+}
+int main(){
+   cout<< rec(12,18)<<endl;
+   cout<<rec(75,40)<<endl;
+   cout<<rec(1739,111)<<endl;
+}
